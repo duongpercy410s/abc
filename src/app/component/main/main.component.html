@@ -1,1 +1,34 @@
-<p>main works!</p>
+<h1>{{ name }}</h1>
+<p>{{ name }}</p>
+
+<!-- <a href="{{ googleURL }}" target="_blank">Go to google</a> -->
+<a [href]="googleURL" target="_blank">Go to google</a>
+<input type="text" value="{{ name }}" />
+<br /><br />
+<input type="text" [value]="name" />
+<br /><br />
+
+<table style="width: 100%">
+  <tr>
+    <th [attr.colspan]="colspan">Company</th>
+    <th>Contact</th>
+    <th>Country</th>
+  </tr>
+  <tr>
+    <td>Alfreds Futterkiste</td>
+    <td>Maria Anders</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>Centro comercial Moctezuma</td>
+    <td>Francisco Chang</td>
+    <td>Mexico</td>
+  </tr>
+</table>
+
+<button class="btn btn-primary" (click)="onBtnClick()">Click me</button>
+<br /><br />
+
+<button class="btn btn-warning" (click)="substractBtn()">Subtract</button>
+<input type="number" value="{{ i }}" />
+<button class="btn btn-danger" (click)="addBtn($event)">Add</button>
