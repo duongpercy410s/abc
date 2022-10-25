@@ -1,3 +1,24 @@
 table, th, td {
     border:1px solid black;
   }
+  .completed{
+    text-decoration: line-through;
+    
+  }
+  .row{
+    border: solid 2px black;
+    padding: 15px;
+  }
+  .todo{
+    text-align: center;
+  }
+  .ng_switch{
+    margin: 15px;
+  }
+  .form_table{
+    border: 2px solid black;
+    border-radius: 5px;
+  }
+  .content_1{
+    padding: 25px;
+  }
