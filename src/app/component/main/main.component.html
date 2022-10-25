@@ -183,7 +183,7 @@
     </button>
   </div>
   <div class="col-8">
-    <ul class="list-group" [hidden]="todos.length === 0">
+    <ul class="list-group" *ngIf="todos.length > 0">
       <li
         class="list-group-item active text-capitalize d-flex justify-content-between"
         *ngFor="let todo of todos; let i = index"
@@ -196,6 +196,6 @@
       </li>
       <!-- 1<li *ngFor="let item of todos">{{ item.complete }}</li> -->
     </ul>
-    <p class="text-center" [hidden]="todos.length > 0">No todos</p>
+    <p class="text-center" *ngIf="todos.length === 0">No todos</p>
   </div>
 </div>

@@ -1,9 +1,14 @@
+import { AlbumsService } from './../../service/albums.service';
+import { TodoService, Todo } from './../../services/todo.service';
 import { Component, OnInit, ɵCurrencyIndex } from '@angular/core';
+import { Album } from 'src/app/services/albums.service';
+// import { TodoService } from '../../services/todo.service';
 interface TodoType {
   id: number;
   content: string;
   complete: boolean;
 }
+
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -28,43 +33,20 @@ export class MainComponent implements OnInit {
   newTodo: string = ' ';
   i: number = 0;
   userName = 'Duong';
-  todos: {
-    userId: number;
-    id: number | string;
-    title: string;
-    completed: boolean;
-  }[] = [
-    {
-      userId: 1,
-      id: 2,
-      title: 'title1',
-      completed: false,
-    },
-    {
-      userId: 1,
-      id: 2,
-      title: 'title2',
-      completed: false,
-    },
-    {
-      userId: 1,
-      id: 2,
-      title: 'title3',
-      completed: true,
-    },
-    {
-      userId: 1,
-      id: 2,
-      title: 'title4',
-      completed: false,
-    },
-    {
-      userId: 1,
-      id: 2,
-      title: 'title5',
-      completed: true,
-    },
-  ];
+  todos: Todo[] = [];
+  albums: Album[] = [];
+
+  constructor(
+    private todoService: TodoService,
+    private albumService: AlbumsService
+  ) {
+    todoService.getAllTodos().subscribe((res: Todo[]) => {
+      this.todos = res;
+    });
+    // albumService.getAllAlbums().subscribe((res: Album[]) => {
+    //   this.albums = res;
+    // });
+  }
 
   ngOnInit(): void {}
   helloClick() {
