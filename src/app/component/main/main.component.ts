@@ -34,6 +34,8 @@ export class MainComponent implements OnInit {
   userName = 'Duong';
   todos: Todo[] = [];
   albums: Album[] = [];
+  today: Date = new Date();
+  price: Number = 1.99999999;
 
   constructor(private todoService: TodoService, albumService: AlbumsService) {
     albumService.getAllAlbums().subscribe((res: Album[]) => {
