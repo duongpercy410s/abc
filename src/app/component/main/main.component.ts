@@ -1,7 +1,6 @@
-import { AlbumsService } from './../../service/albums.service';
+import { AlbumsService, Album } from './../../services/albums.service';
 import { TodoService, Todo } from './../../services/todo.service';
 import { Component, OnInit, ɵCurrencyIndex } from '@angular/core';
-import { Album } from 'src/app/services/albums.service';
 // import { TodoService } from '../../services/todo.service';
 interface TodoType {
   id: number;
@@ -36,19 +35,17 @@ export class MainComponent implements OnInit {
   todos: Todo[] = [];
   albums: Album[] = [];
 
-  constructor(
-    private todoService: TodoService,
-    private albumService: AlbumsService
-  ) {
-    todoService.getAllTodos().subscribe((res: Todo[]) => {
-      this.todos = res;
+  constructor(private todoService: TodoService, albumService: AlbumsService) {
+    albumService.getAllAlbums().subscribe((res: Album[]) => {
+      this.albums = res;
     });
-    // albumService.getAllAlbums().subscribe((res: Album[]) => {
-    //   this.albums = res;
-    // });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.todoService.getAllTodos().subscribe((res: Todo[]) => {
+      this.todos = res;
+    });
+  }
   helloClick() {
     this.listTodo1.push({
       id: this.id,
@@ -87,18 +84,20 @@ export class MainComponent implements OnInit {
   userId: number = 0;
   completed: boolean = false;
   addButton() {
-    this.todos.push({
-      userId: this.userId,
-      id: this.id,
-      title: this.titles,
-      completed: this.completed,
-    });
-    this.titles = '';
-    this.id += 1;
-    this.userId += 1;
+    // this.todos.push({
+    //   userId: this.userId,
+    //   id: this.id,
+    //   title: this.titles,
+    //   completed: this.completed,
+    // });
+    // this.titles = '';
+    // this.id += 1;
+    // this.userId += 1;
 
-    console.log(this.todos);
-    console.log(this.titles);
+    // console.log(this.todos);
+    // console.log(this.titles);
+
+    this.addNewTodo();
   }
   delete1(id: number) {
     //this.listTodo1.pop();
@@ -107,20 +106,35 @@ export class MainComponent implements OnInit {
     });
     this.listTodo1.splice(object, 1);
   }
+
   complete(index) {
     this.listTodo1[index].complete = !this.listTodo1[index].complete;
   }
   addNewTodo() {
-    this.todos.push({
+    var newTodo = {
       userId: this.userId,
       id: this.id,
       title: this.titles,
       completed: this.completed,
-    });
+    };
+
+    this.todoService.addNewTodo(newTodo).subscribe(
+      (res: Todo) => {
+        this.todos.unshift(res);
+      },
+      (err) => {}
+    );
+    this.newTodo = ' ';
+    // this.todos.push({
+    //   userId: this.userId,
+    //   id: this.id,
+    //   title: this.titles,
+    //   completed: this.completed,
+    // });
     this.titles = '';
-    this.id += 1;
-    this.userId += 1;
-    this.titles = '';
+    // this.id += 1;
+    // this.userId += 1;
+    // this.titles = '';
   }
   onBtnClick() {
     console.log('clicked');
@@ -137,7 +151,17 @@ export class MainComponent implements OnInit {
   }
 
   deleteIndex(index) {
-    this.todos.splice(index, 1);
+    // console.log(index);
+    this.todoService.deleteTodo(this.todos[index].id as Number).subscribe(
+      (res) => {
+        this.todos.splice(index, 1);
+      },
+      (err) => {}
+    );
+  }
+
+  deleteIndex2(index) {
+    this.albums.splice(index, 1);
   }
   substractBtn() {
     if (this.i > 0) {

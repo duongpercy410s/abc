@@ -192,10 +192,32 @@
           {{ i + 1 }}. {{ todo.title }}</span
         >
 
-        <button class="btn btn-danger" (click)="deleteIndex()">Delete</button>
+        <button class="btn btn-danger" (click)="deleteIndex(i)">Delete</button>
       </li>
-      <!-- 1<li *ngFor="let item of todos">{{ item.complete }}</li> -->
     </ul>
     <p class="text-center" *ngIf="todos.length === 0">No todos</p>
   </div>
 </div>
+<br />
+<p>
+  -----------------------------------------------------------------------------------------
+</p>
+<br />
+<!-- <div class="form-group row mt-5">
+  <div class="col-8">
+    <ul class="list-group" *ngIf="albums.length > 0">
+      <li
+        class="list-group-item active text-capitalize d-flex justify-content-between"
+        *ngFor="let album of albums; let i = index"
+      >
+        <span (click)="toogleTodo(i)" [class.completed]="album.completed">
+          {{ i + 1 }}. {{ album.title }}</span
+        >
+
+        <button class="btn btn-danger" (click)="deleteIndex2()">Delete</button>
+      </li>
+     
+    </ul>
+    <p class="text-center" *ngIf="albums.length === 0">No todos</p>
+  </div>
+</div> -->
