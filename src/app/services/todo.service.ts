@@ -19,6 +19,9 @@ export class TodoService {
     // return this.todos;
     return this.http.get('https://jsonplaceholder.typicode.com/todos');
   }
+  getTodo(id) {
+    return this.http.get(this.baseURL + '/todos/' + id);
+  }
   deleteTodo(id: Number) {
     return this.http.delete(`https://jsonplaceholder.typicode.com/todos/${id}`);
   }

@@ -11,6 +11,7 @@ import { NavBarComponent } from './component/nav-bar/nav-bar.component';
 import { MainComponent } from './component/main/main.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { MoviesComponent } from './components/movies/movies.component';
+import { TodoDetailComponent } from './components/todo-detail/todo-detail.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MoviesComponent } from './components/movies/movies.component';
     MainComponent,
     FooterComponent,
     MoviesComponent,
+    TodoDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,8 +36,18 @@ import { MoviesComponent } from './components/movies/movies.component';
         path: 'home',
         component: HomeComponent,
       },
-      { path: 'todos', component: MainComponent },
-      { path: 'movies', component: MoviesComponent },
+      {
+        path: 'todos/:id',
+        component: TodoDetailComponent,
+      },
+      {
+        path: 'todos',
+        component: MainComponent,
+      },
+      {
+        path: 'movies',
+        component: MoviesComponent,
+      },
     ]),
   ],
   providers: [],
