@@ -12,6 +12,7 @@ import { MainComponent } from './component/main/main.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { MoviesComponent } from './components/movies/movies.component';
 import { TodoDetailComponent } from './components/todo-detail/todo-detail.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { TodoDetailComponent } from './components/todo-detail/todo-detail.compon
     FooterComponent,
     MoviesComponent,
     TodoDetailComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,10 @@ import { TodoDetailComponent } from './components/todo-detail/todo-detail.compon
         path: '',
         redirectTo: '/home',
         pathMatch: 'full',
+      },
+      {
+        path: 'logins',
+        component: LoginComponent,
       },
       {
         path: 'home',
